@@ -1,16 +1,36 @@
-# React + Vite
+# Property Research — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React frontend for the Property Research API, providing an interface to search London property data, calculate mortgage payments, and compare rental yields across areas.
 
-Currently, two official plugins are available:
+**Live app:** https://property-frontend-navy.vercel.app/
+**Backend API:** https://property-api-rpdk.onrender.com/docs
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Property Search** — look up price, rental yield, listings, and growth forecast for a given area
+- **Mortgage Calculator** — calculate monthly payments based on area and deposit amount
+- **Area Comparison** — compare rental yields and prices across multiple areas at once
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the ESLint configuration
+- React 18 + Vite
+- Axios for API requests
+- Deployed on Vercel
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Notable engineering details
+
+- **CORS handling**: the frontend and backend are deployed separately (Vercel + Render), requiring explicit CORS middleware configuration on the backend to allow cross-origin requests.
+- **Validation & error handling**: every form validates input before submission and displays clear error messages for empty inputs, 404s, and backend validation errors (e.g. negative deposits, deposit exceeding property price).
+- **Bug found via manual testing**: an edge case where a validation error would display alongside stale results from a previous successful request — fixed by explicitly clearing result state whenever a new validation error occurs.
+- **Responsive design**: layout and typography scale cleanly from mobile (tested at 375px) to desktop.
+
+## Running locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Related
+
+Backend API source: [property-api](https://github.com/gali-ai-engineer/property-api)

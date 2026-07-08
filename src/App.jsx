@@ -27,6 +27,7 @@ function App() {
   async function handleSearch() {
     if (!areaInput.trim()) {
       setError('Please enter an area name')
+      setPropertyData(null)
       return
     }
     setLoading(true)
@@ -49,6 +50,7 @@ function App() {
   async function handleMortgageCalculate() {
     if (!mortgageArea.trim() || !deposit) {
       setMortgageError('Please enter both area and deposit amount')
+      setMortgageResult(null)
       return
     }
     setMortgageLoading(true)
@@ -74,6 +76,7 @@ function App() {
   async function handleCompare() {
     if (!compareAreas.trim()) {
       setCompareError('Please enter at least one area')
+      setCompareResult(null)
       return
     }
     setCompareLoading(true)
